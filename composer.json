@@ -1,17 +1,17 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "enginedigital/model-notes",
+    "description": "Create notes on eloquent models. Supports multiple note types as well as multi-tenancy",
     "keywords": [
-        ":vendor_name",
+        "EngineDigital",
         "laravel",
-        "package_slug"
+        "model-notes"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/enginedigital/model-notes",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "James Doyle",
+            "email": "james.doyle@enginedigital.com",
             "role": "Developer"
         }
     ],
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "EngineDigital\\Note\\": "src",
+            "EngineDigital\\Note\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "EngineDigital\\Note\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,11 +50,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
-            }
+                "EngineDigital\\Note\\NoteServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

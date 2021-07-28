@@ -1,10 +1,11 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace EngineDigital\Note\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Spatie\LaravelPackageTools\CreatePackageTable;
+use EngineDigital\Note\NoteServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,14 +14,19 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'EngineDigital\\Note\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        // $this->artisan('migrate', [
+        //     '--database' => 'testbench',
+        //     '--realpath' => realpath(__DIR__ . '/../database/migrations'),
+        // ]);
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            NoteServiceProvider::class,
         ];
     }
 
@@ -28,9 +34,25 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        include_once __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
+        // $migration = require __DIR__ . '/../database/migrations/create_model_notes_table.php.stub';
+        // $migration->up();
+
+        // Setup default database to use sqlite :memory:
+        // config()->set('database.default', 'testbench');
+        // config()->set('database.connections.testbench', [
+        //     'driver'   => 'sqlite',
+        //     'database' => ':memory:',
+        //     'prefix'   => '',
+        // ]);
+        // $app['config']->set('database.default', 'testbench');
+        // $app['config']->set('database.connections.testbench', [
+        //     'driver'   => 'sqlite',
+        //     'database' => ':memory:',
+        //     'prefix'   => '',
+        // ]);
+        // $this->artisan('migrate', [
+        //     '--database' => 'testing',
+        //     '--realpath' => realpath(__DIR__ . '/../database/migrations'),
+        // ]);
     }
 }
