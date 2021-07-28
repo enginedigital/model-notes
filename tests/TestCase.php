@@ -2,10 +2,9 @@
 
 namespace EngineDigital\Note\Tests;
 
+use EngineDigital\Note\NoteServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\LaravelPackageTools\CreatePackageTable;
-use EngineDigital\Note\NoteServiceProvider;
 
 class TestCase extends Orchestra
 {

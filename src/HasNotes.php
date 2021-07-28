@@ -2,8 +2,8 @@
 
 namespace EngineDigital\Note;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait HasNotes
 {
