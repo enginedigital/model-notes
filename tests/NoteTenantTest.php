@@ -4,9 +4,9 @@ namespace EngineDigital\Note\Tests;
 
 use EngineDigital\Note\Note;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class FakeCompany extends Model {
+class FakeCompany extends Model
+{
     protected $table = 'company';
     protected $fillable = ['name'];
 }

@@ -2,18 +2,18 @@
 
 namespace EngineDigital\Note\Tests;
 
-use EngineDigital\Note\Note;
 use EngineDigital\Note\HasNotes;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class AnotherFakeCompany extends Model {
+class AnotherFakeCompany extends Model
+{
     use HasNotes;
     protected $table = 'company';
     protected $fillable = ['name'];
 }
 
-class TenantResolver {
+class TenantResolver
+{
     public function __invoke()
     {
         return '123';

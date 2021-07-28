@@ -2,13 +2,14 @@
 
 namespace EngineDigital\Note;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use InvalidArgumentException;
 
-class Note extends Model {
+class Note extends Model
+{
     protected $table = 'notes';
 
     protected $fillable = [
@@ -35,7 +36,7 @@ class Note extends Model {
     {
         $tenantClass = config('model-notes.tenant_model');
 
-        if (!$tenantClass) {
+        if (! $tenantClass) {
             throw new Exception('Tenant class was not set');
         }
 
@@ -46,7 +47,7 @@ class Note extends Model {
     {
         $types = config('model-notes.note_types');
 
-        if (!in_array($value, $types)) {
+        if (! in_array($value, $types)) {
             throw new InvalidArgumentException(sprintf('Type of "%s" does not exist in "%s"', $value, implode(', ', $types)));
         }
 
@@ -65,7 +66,8 @@ class Note extends Model {
         return $this->note;
     }
 
-    public function getTimeAgoAttribute(): string {
+    public function getTimeAgoAttribute(): string
+    {
         return $this->created_at ? $this->created_at->diffForHumans() : '';
     }
 }
