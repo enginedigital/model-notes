@@ -27,6 +27,8 @@ class NoteTest extends TestCase
 
         $this->assertTrue($note->exists());
         $this->assertEquals(config('model-notes.note_default_type'), $note->fresh()->type);
+        // check that the raw value matches - which is not the case when using encryption
+        $this->assertEquals($note->note, $note->getAttributes()['note']);
     }
 
     /** @test */
@@ -60,6 +62,8 @@ class NoteTest extends TestCase
         ]);
 
         $this->assertEquals($expected, (string)$note);
+        // check that the raw value matches - which is not the case when using encryption
+        $this->assertEquals($expected, $note->getAttributes()['note']);
     }
 
     /** @test */

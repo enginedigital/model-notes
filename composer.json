@@ -4,7 +4,10 @@
     "keywords": [
         "EngineDigital",
         "laravel",
-        "model-notes"
+        "tenant",
+        "multi-tenancy",
+        "encryption",
+        "notes"
     ],
     "homepage": "https://github.com/enginedigital/model-notes",
     "license": "MIT",

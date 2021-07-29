@@ -23,6 +23,7 @@ class Note extends Model
     // protected $guarded = [];
 
     protected $casts = [
+        'note' => EncryptNoteCast::class,
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
