@@ -4,6 +4,7 @@ namespace EngineDigital\Note;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class EncryptNoteCast implements CastsAttributes
 {
