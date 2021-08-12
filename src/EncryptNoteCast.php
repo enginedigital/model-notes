@@ -3,8 +3,8 @@
 namespace EngineDigital\Note;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class EncryptNoteCast implements CastsAttributes
 {
