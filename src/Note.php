@@ -28,6 +28,17 @@ class Note extends Model
         'updated_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (Note $model) {
+            $resolver = config('model-notes.tenant_resolver');
+
+            if ($resolver) {
+                $model->attributes['tenant_id'] = $resolver && is_callable(app($resolver)) ? app($resolver)() : null;
+            }
+        });
+    }
+
     public function model(): MorphTo
     {
         return $this->morphTo();
@@ -53,13 +64,6 @@ class Note extends Model
         }
 
         $this->attributes['type'] = strtolower($value);
-    }
-
-    public function setTenantIdAttribute(string $value = null): void
-    {
-        $resolver = config('model-notes.tenant_resolver');
-
-        $this->attributes['tenant_id'] = $resolver && is_callable(app($resolver)) ? app($resolver)() : $value;
     }
 
     public function __toString(): string
