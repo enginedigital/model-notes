@@ -67,6 +67,19 @@ class NoteTest extends TestCase
     }
 
     /** @test */
+    public function notes_will_include_accessors()
+    {
+        $note = Note::create([
+            'note' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            'model_type' => Note::class,
+            'model_id' => 1,
+        ]);
+
+        $this->assertArrayHasKey('time_ago', $note->toArray());
+        $this->assertStringContainsString('second ago', $note->time_ago);
+    }
+
+    /** @test */
     public function notes_can_only_be_saved_with_matching_type()
     {
         $this->expectException(\InvalidArgumentException::class);

@@ -20,7 +20,10 @@ class Note extends Model
         'model_id',
     ];
 
-    // protected $guarded = [];
+    protected $appends = [
+        'formatted_note',
+        'time_ago',
+    ];
 
     protected $casts = [
         'note' => EncryptNoteCast::class,
@@ -57,7 +60,7 @@ class Note extends Model
 
     public function setTypeAttribute(string $value = ''): void
     {
-        $types = config('model-notes.note_types');
+        $types = array_keys(config('model-notes.note_types'));
 
         if (! in_array($value, $types)) {
             throw new InvalidArgumentException(sprintf('Type of "%s" does not exist in "%s"', $value, implode(', ', $types)));
@@ -66,13 +69,38 @@ class Note extends Model
         $this->attributes['type'] = strtolower($value);
     }
 
-    public function __toString(): string
+    public function getFormattedNoteAttribute()
     {
-        return $this->note;
+        $type = config('model-notes.note_types.' . $this->type);
+
+        if (!$type) {
+            return $this->attributes['note'];
+        }
+
+        if (is_array($type)) {
+            // call the method on the class with the note field as the first argument
+            return app($type[0])->{$type[1]}($this->attributes['note']);
+        }
+
+        if (class_exists($type)) {
+            // call __invoke on the class
+            return app($type)($this->attributes['note']);
+        }
+
+        if (function_exists($type)) {
+            return call_user_func($type, $this->attributes['note']);
+        }
+
+        throw new Exception(sprintf('Could not find a way to render note of type "%s"', $type));
     }
 
     public function getTimeAgoAttribute(): string
     {
         return $this->created_at ? $this->created_at->diffForHumans() : '';
+    }
+
+    public function __toString(): string
+    {
+        return $this->note;
     }
 }
