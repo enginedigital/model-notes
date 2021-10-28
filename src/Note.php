@@ -73,7 +73,7 @@ class Note extends Model
     {
         $type = config('model-notes.note_types.' . $this->type);
 
-        if (!$type) {
+        if (! $type) {
             return $this->attributes['note'];
         }
 
