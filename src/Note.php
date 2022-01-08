@@ -14,6 +14,7 @@ class Note extends Model
 
     protected $fillable = [
         'tenant_id',
+        'author_id',
         'note',
         'type',
         'model_type',
@@ -34,10 +35,16 @@ class Note extends Model
     protected static function booted(): void
     {
         static::creating(function (Note $model) {
-            $resolver = config('model-notes.tenant_resolver');
+            $tenantResolver = config('model-notes.tenant_resolver');
 
-            if ($resolver) {
-                $model->attributes['tenant_id'] = $resolver && is_callable(app($resolver)) ? app($resolver)() : null;
+            if ($tenantResolver) {
+                $model->attributes['tenant_id'] = $tenantResolver && is_callable(app($tenantResolver)) ? app($tenantResolver)() : null;
+            }
+
+            $authorResolver = config('model-notes.author_resolver');
+
+            if ($authorResolver) {
+                $model->attributes['author_id'] = $authorResolver && is_callable(app($authorResolver)) ? app($authorResolver)() : null;
             }
         });
     }
@@ -56,6 +63,17 @@ class Note extends Model
         }
 
         return $this->belongsTo((string)$tenantClass);
+    }
+
+    public function author(): BelongsTo
+    {
+        $authorClass = config('model-notes.author_model');
+
+        if (! $authorClass) {
+            throw new Exception('Author class was not set');
+        }
+
+        return $this->belongsTo((string)$authorClass);
     }
 
     public function setTypeAttribute(string $value = ''): void

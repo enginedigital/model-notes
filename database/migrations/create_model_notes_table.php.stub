@@ -25,6 +25,16 @@ return new class extends Migration
                     ->onDelete('cascade');
             }
 
+            $authorModel = $config['author_model'] ? app($config['author_model']) : false;
+
+            if ($authorModel) {
+                $table->foreignId('author_id')
+                    ->nullable()
+                    ->constrained($authorModel->getTable())
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            }
+
             $table->text('note');
             $table->string('type')->default($config['note_default_type'] ?? 'plain');
 
