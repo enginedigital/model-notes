@@ -16,4 +16,7 @@ return [
     'encrypt_notes' => false,
     'tenant_model' => null, // App\Models\Company::class
     'tenant_resolver' => null, // a class that uses `__invoke` or a container function to get the id of the current tenant
+    'author_model' => null, // App\Models\User::class
+    'author_resolver' => null, // a class that uses `__invoke` or a container function to get the id of the current user
+    'cache_time' => null, // cache time in seconds
 ];
