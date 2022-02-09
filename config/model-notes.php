@@ -19,4 +19,5 @@ return [
     'author_model' => null, // App\Models\User::class
     'author_resolver' => null, // a class that uses `__invoke` or a container function to get the id of the current user
     'cache_time' => null, // cache time in seconds
+    'load_with' => [], // which note relationships to eager load. Example: ['author', 'author.profile', 'author.roles'] or only specific columns ['author:id,name']
 ];

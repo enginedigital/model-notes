@@ -25,6 +25,7 @@ return new class extends Migration
                     ->onDelete('cascade');
             }
 
+            /**  @var Illuminate\Database\Eloquent\Model|null */
             $authorModel = $config['author_model'] ? app($config['author_model']) : false;
 
             if ($authorModel) {
@@ -46,7 +47,6 @@ return new class extends Migration
 
     public function down()
     {
-        // $table->dropForeign('posts_user_id_foreign');
         Schema::dropIfExists('notes');
     }
 };
