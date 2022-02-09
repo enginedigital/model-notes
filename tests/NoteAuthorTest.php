@@ -2,8 +2,8 @@
 
 namespace EngineDigital\Note\Tests;
 
-use EngineDigital\Note\HasNotes;
 use EngineDigital\Note\HasAllNotesAttribute;
+use EngineDigital\Note\HasNotes;
 use EngineDigital\Note\Note;
 use Illuminate\Database\Eloquent\Model;
 
