@@ -21,8 +21,15 @@ trait HasAllNotesAttribute
         /** @var int|null */
         $cacheTimeInSeconds = config('model-notes.cache_time');
 
-        return $cacheTimeInSeconds ? cache()->remember($this->{$this->getKeyName()} . '-notes', $cacheTimeInSeconds, function () {
-            return $this->notes()->get();
-        }) : $this->notes()->get();
+        /** @var string[] */
+        $eagerLoad = config('model-notes.load_with', []);
+
+        if (is_null($cacheTimeInSeconds)) {
+            return $this->notes()->with($eagerLoad)->get();
+        }
+
+        return cache()->remember($this->{$this->getKeyName()} . '-notes', $cacheTimeInSeconds, function () use ($eagerLoad) {
+            return $this->notes()->with($eagerLoad)->get();
+        });
     }
 }
