@@ -9,10 +9,10 @@ use Exception;
  */
 trait HasAllNotesAttribute
 {
-    protected static function bootHasNotesAttribute(): void
+    protected static function bootHasAllNotesAttribute(): void
     {
         if (class_uses_recursive(HasNotes::class) === false) {
-            throw new Exception('HasNotesAttribute required the model to also use HasNotes');
+            throw new Exception('HasAllNotesAttribute required the model to also use HasNotes');
         }
     }
 
