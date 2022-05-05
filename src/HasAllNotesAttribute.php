@@ -28,7 +28,10 @@ trait HasAllNotesAttribute
             return $this->notes()->with($eagerLoad)->get();
         }
 
-        return cache()->remember($this->{$this->getKeyName()} . '-notes', $cacheTimeInSeconds, function () use ($eagerLoad) {
+        /** @var string */
+        $key = sprintf('%s-notes-%s', get_class($this), $this->{$this->getKeyName()});
+
+        return cache()->remember($key, $cacheTimeInSeconds, function () use ($eagerLoad) {
             return $this->notes()->with($eagerLoad)->get();
         });
     }
