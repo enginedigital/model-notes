@@ -19,6 +19,7 @@ class Note extends Model
         'type',
         'model_type',
         'model_id',
+        'group',
     ];
 
     protected $appends = [
