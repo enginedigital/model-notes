@@ -74,6 +74,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 ## Credits
 
 - [James Doyle](https://github.com/james2doyle)
+- [Tim Wernke](https://github.com/tawernke)
 
 ## License
 
