@@ -19,6 +19,7 @@ class NoteTest extends TestCase
     {
         $note = new Note([
             'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+            'group' => 'note_group',
             'model_type' => Note::class,
             'model_id' => 1,
         ]);
@@ -29,6 +30,7 @@ class NoteTest extends TestCase
         $this->assertEquals(config('model-notes.note_default_type'), $note->fresh()->type);
         // check that the raw value matches - which is not the case when using encryption
         $this->assertEquals($note->note, $note->getAttributes()['note']);
+        $this->assertEquals($note->group, $note->getAttributes()['group']);
     }
 
     /** @test */

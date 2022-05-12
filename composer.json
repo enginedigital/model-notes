@@ -16,6 +16,11 @@
             "name": "James Doyle",
             "email": "james.doyle@enginedigital.com",
             "role": "Developer"
+        },
+        {
+            "name": "Tim Wernke",
+            "email": "tim.wernke@enginedigital.com",
+            "role": "Developer"
         }
     ],
     "require": {

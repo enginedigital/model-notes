@@ -37,6 +37,7 @@ return new class extends Migration
             }
 
             $table->text('note');
+            $table->text('group')->default($config['note_default_group'] ?? 'admin');
             $table->string('type')->default($config['note_default_type'] ?? 'plain');
 
             $table->morphs('model');
