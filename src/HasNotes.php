@@ -12,11 +12,16 @@ trait HasNotes
         return $this->morphMany($this->getNoteModelClassName(), 'model', 'model_type', $this->getModelKeyColumnName())->latest('id');
     }
 
-    public function setNote(array $note): Note
+    public function setNote(string $note): Note
+    {
+        return $this->notes()->create(['note' => $note]);
+    }
+
+    public function setNoteWithGroup(array $note): Note
     {
         return $this->notes()->create([
             'note' => $note['note'],
-            'group' => isset($note['group']) ? $note['group'] : config('note_default_group', 'admin'),
+            'group' => $note['group'],
         ]);
     }
 
