@@ -49,21 +49,4 @@ class NoteTraitTest extends TestCase
 
         $this->assertEquals($company->notes()->get()->pluck('note')->toArray(), [$expected]);
     }
-
-    /** @test */
-    public function notes_can_be_saved_on_models_with_group()
-    {
-        $company = AnotherFakeCompany::create([
-            'name' => 'My Company',
-        ]);
-
-        $note = [
-            'note' => 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
-            'group' => 'note_group',
-        ];
-
-        $company->setNoteWithGroup($note);
-
-        $this->assertEquals($company->notes()->first()->only('note', 'group'), $note);
-    }
 }

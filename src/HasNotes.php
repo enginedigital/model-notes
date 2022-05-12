@@ -17,14 +17,6 @@ trait HasNotes
         return $this->notes()->create(['note' => $note]);
     }
 
-    public function setNoteWithGroup(array $note): Note
-    {
-        return $this->notes()->create([
-            'note' => $note['note'],
-            'group' => $note['group'],
-        ]);
-    }
-
     protected function getModelKeyColumnName(): string
     {
         return config('model-notes.model_primary_key_attribute') ?? 'model_id';
