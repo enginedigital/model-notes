@@ -12,9 +12,12 @@ trait HasNotes
         return $this->morphMany($this->getNoteModelClassName(), 'model', 'model_type', $this->getModelKeyColumnName())->latest('id');
     }
 
-    public function setNote(string $note): Note
+    public function setNote(array $note): Note
     {
-        return $this->notes()->create(['note' => $note]);
+        return $this->notes()->create([
+            'note' => $note['note'],
+            'group' => $note['group'],
+        ]);
     }
 
     protected function getModelKeyColumnName(): string
