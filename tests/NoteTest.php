@@ -19,6 +19,7 @@ class NoteTest extends TestCase
     {
         $note = new Note([
             'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+            'group' => 'note_group',
             'model_type' => Note::class,
             'model_id' => 1,
         ]);
