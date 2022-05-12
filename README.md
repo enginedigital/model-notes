@@ -33,6 +33,7 @@ This is the contents of the published config file:
 return [
     'note_model' => EngineDigital\Note\Note::class,
     'note_default_type' => 'none',
+    'note_default_group' => 'admin',
     // key => 'formatter_class_with_invoke',
     // key => ['formatter', 'method'],
     'note_types' => [
