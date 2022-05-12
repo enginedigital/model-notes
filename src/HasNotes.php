@@ -16,7 +16,7 @@ trait HasNotes
     {
         return $this->notes()->create([
             'note' => $note['note'],
-            'group' => $note['group'],
+            'group' => isset($note['group']) ? $note['group'] : config('note_default_group', 'admin'),
         ]);
     }
 

@@ -45,7 +45,7 @@ class NoteTraitTest extends TestCase
 
         $expected = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.';
 
-        $company->setNote($expected);
+        $company->setNote(['note' => $expected]);
 
         $this->assertEquals($company->notes()->get()->pluck('note')->toArray(), [$expected]);
     }
